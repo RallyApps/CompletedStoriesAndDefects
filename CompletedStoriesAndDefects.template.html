@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- Copyright (c) 2012 Rally Software Development Corp. All rights reserved -->
+<html>
+<head>
+  <title>Completed Stories And Defects</title>
+  <meta name="Name" content="App: Completed Stories And Defects" />
+  <meta name="Version" content="2012.12.03" />
+  <meta name="Vendor" content="Rally Software" />
+
+  <script type="text/javascript" src="/apps/1.32/sdk.js"></script>
+
+  <script type="text/javascript">
+    function onLoad() {
+      var appCustom = new CompletedStoriesAndDefects();
+
+      rallyDataSource = new rally.sdk.data.RallyDataSource('__WORKSPACE_OID__',
+                    '__PROJECT_OID__',
+                    '__PROJECT_SCOPING_UP__',
+                    '__PROJECT_SCOPING_DOWN__');
+      var iterConfig = {label: "Select Iteration "};
+      iterDropdown = new rally.sdk.ui.IterationDropdown(iterConfig, rallyDataSource);
+      iterDropdown.display("iterations", appCustom.onIterationSelected);
+    }
+
+    rally.addOnLoad(onLoad);
+  </script>
+</head>
+
+<body>
+  <div id="iterations"></div>
+  <div id="wait"></div>
+  <h4 id="UserNameHeader">Completed Items</h4>
+
+  <div class="count" div id="stories_count"></div>
+  <div id="stories"></div>
+  <br><br>
+
+  <div class="count" div id="defects_count"></div>
+  <div id="defects"></div>
+</body>
+</html>
